@@ -3,7 +3,7 @@
 <html lang="en">
 <head><meta charset="utf-8"/>
 <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
-<title>sod-analysis - Copy</title><script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.1.10/require.min.js"></script>
+<title>sod-analysis</title><script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.1.10/require.min.js"></script>
 <style type="text/css">
     pre { line-height: 125%; }
 td.linenos .normal { color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px; }
@@ -7535,12 +7535,12 @@ a.anchor-link {
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=4271fe2a-6d24-4813-8492-37ccb8d42aad">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=4271fe2a-6d24-4813-8492-37ccb8d42aad">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [107]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In [1]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
 <div class="highlight hl-ipython3"><pre><span></span><span class="c1">#libraries</span>
@@ -7559,9 +7559,22 @@ a.anchor-link {
 <span class="sd">'''</span>
 <span class="c1">#define cwd </span>
 <span class="kn">import</span><span class="w"> </span><span class="nn">os</span>
-<span class="c1">#os.chdir('./sheets_calpoly')</span>
-<span class="c1">#print(os.getcwd())</span>
+<span class="n">os</span><span class="o">.</span><span class="n">chdir</span><span class="p">(</span><span class="s1">'./sheets_calpoly'</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">getcwd</span><span class="p">())</span>
 </pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell-outputWrapper">
+<div class="jp-Collapser jp-OutputCollapser jp-Cell-outputCollapser">
+</div>
+<div class="jp-OutputArea jp-Cell-outputArea">
+<div class="jp-OutputArea-child">
+<div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
+<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
+<pre>C:\Users\benpa\Documents\juptyer\sheets_calpoly
+</pre>
 </div>
 </div>
 </div>
@@ -7571,7 +7584,7 @@ a.anchor-link {
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [112]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In [2]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
 <div class="highlight hl-ipython3"><pre><span></span><span class="c1"># presets</span>
@@ -7657,11 +7670,106 @@ a.anchor-link {
 </div>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
-<h3 id="Plot-grouping">Plot grouping<a class="anchor-link" href="#Plot-grouping">¶</a></h3><p>Need to better understand the different disturbances that have happened throughout the plot network. Plots will be grouped by disturbance:</p>
+<h3 id="Plot-grouping">Plot grouping<a class="anchor-link" href="#Plot-grouping">¶</a></h3><p>Need to better understand the different disturbances that have happened throughout the plot network, <a href="https://docs.google.com/spreadsheets/d/1v8svlbehpm1javFmeWQUJVsj88BfvcI0/edit?gid=250385454#gid=250385454">dataset here</a>.<br/>
+Plots will be grouped by disturbance:</p>
 <ul>
-<li>fire (if so which one/combo) vs. no-fire</li>
+<li>fire (if so which one/combo) vs. control</li>
 <li>disease vs. control</li>
 </ul>
+<h4 id="When-were-plots-sampled?-How-many-contain-redwood?">When were plots sampled? How many contain redwood?<a class="anchor-link" href="#When-were-plots-sampled?-How-many-contain-redwood?">¶</a></h4>
+</div>
+</div>
+</div>
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=11d0d6f5-0f0d-4bae-a8a2-54805f73e850">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In [16]:</div>
+<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+<div class="cm-editor cm-s-jupyter">
+<div class="highlight hl-ipython3"><pre><span></span><span class="c1">#load plot level data, clean irregularities</span>
+<span class="n">df_plot</span> <span class="o">=</span> <span class="n">bs_data</span><span class="p">[</span><span class="s1">'plot_data'</span><span class="p">]</span>
+<span class="n">df_plot</span><span class="o">.</span><span class="n">columns</span> <span class="o">=</span> <span class="n">df_plot</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+<span class="n">df_plot</span> <span class="o">=</span> <span class="n">df_plot</span><span class="o">.</span><span class="n">drop</span><span class="p">(</span><span class="n">df_plot</span><span class="o">.</span><span class="n">index</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span><span class="o">.</span><span class="n">reset_index</span><span class="p">()</span>
+<span class="n">df_plot</span><span class="o">.</span><span class="n">columns</span> <span class="o">=</span> <span class="n">df_plot</span><span class="o">.</span><span class="n">columns</span><span class="o">.</span><span class="n">str</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span>
+<span class="n">df_inv</span> <span class="o">=</span> <span class="n">df_plot</span><span class="o">.</span><span class="n">filter</span><span class="p">(</span><span class="n">regex</span><span class="o">=</span><span class="s2">"(?i)Big Sur|year|forest|revisited|fully"</span><span class="p">)</span>
+<span class="n">plot_stats</span> <span class="o">=</span> <span class="n">df_inv</span><span class="o">.</span><span class="n">iloc</span><span class="p">[:,</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">nunique</span><span class="p">()</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"amount of plots established: </span><span class="si">{</span><span class="n">plot_stats</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
+<span class="n">plot_revisit</span> <span class="o">=</span> <span class="n">df_inv</span><span class="o">.</span><span class="n">iloc</span><span class="p">[:,</span><span class="mi">3</span><span class="p">]</span><span class="o">.</span><span class="n">value_counts</span><span class="p">()</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"breakdown of how many plots have been revisited --  </span><span class="si">{</span><span class="n">plot_revisit</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
+<span class="n">plot_fully</span> <span class="o">=</span> <span class="n">df_inv</span><span class="o">.</span><span class="n">iloc</span><span class="p">[:,</span><span class="mi">4</span><span class="p">]</span><span class="o">.</span><span class="n">value_counts</span><span class="p">()</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"how many plots have not been visited since 2009? -- </span><span class="si">{</span><span class="n">plot_fully</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
+<span class="n">df_red_plot</span> <span class="o">=</span> <span class="n">df_inv</span><span class="o">.</span><span class="n">iloc</span><span class="p">[:,[</span><span class="mi">0</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">4</span><span class="p">]]</span>
+<span class="n">df_f_type</span> <span class="o">=</span> <span class="n">df_red_plot</span><span class="p">[</span>
+    <span class="n">df_red_plot</span><span class="o">.</span><span class="n">iloc</span><span class="p">[:,</span><span class="mi">1</span><span class="p">]</span> <span class="o">==</span> <span class="s1">'2'</span>
+<span class="p">]</span><span class="o">.</span><span class="n">iloc</span><span class="p">[:,</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">value_counts</span><span class="p">()</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"how many are redwood?  ---   </span><span class="si">{</span><span class="n">df_f_type</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
+<span class="n">df_red_count</span> <span class="o">=</span> <span class="n">df_red_plot</span><span class="p">[</span>
+    <span class="p">(</span><span class="n">df_red_plot</span><span class="o">.</span><span class="n">iloc</span><span class="p">[:,</span><span class="mi">1</span><span class="p">]</span> <span class="o">==</span> <span class="s1">'2'</span><span class="p">)</span>
+    <span class="p">]</span><span class="o">.</span><span class="n">iloc</span><span class="p">[:,</span><span class="mi">1</span><span class="p">:</span><span class="mi">3</span><span class="p">]</span><span class="o">.</span><span class="n">value_counts</span><span class="p">()</span><span class="o">.</span><span class="n">reset_index</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s1">'count'</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">"how many have been revisited?"</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">df_red_count</span><span class="p">)</span>
+<span class="n">df_red_fully</span> <span class="o">=</span> <span class="n">df_red_plot</span><span class="p">[</span>
+    <span class="p">(</span><span class="n">df_red_plot</span><span class="o">.</span><span class="n">iloc</span><span class="p">[:,</span><span class="mi">1</span><span class="p">]</span> <span class="o">==</span> <span class="s1">'2'</span><span class="p">)</span>
+    <span class="p">]</span><span class="o">.</span><span class="n">iloc</span><span class="p">[:,[</span><span class="mi">1</span><span class="p">,</span><span class="mi">3</span><span class="p">]]</span><span class="o">.</span><span class="n">value_counts</span><span class="p">()</span><span class="o">.</span><span class="n">reset_index</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s1">'count'</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"how many of been visited since 2008? -- </span><span class="si">{</span><span class="n">df_red_fully</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell-outputWrapper">
+<div class="jp-Collapser jp-OutputCollapser jp-Cell-outputCollapser">
+</div>
+<div class="jp-OutputArea jp-Cell-outputArea">
+<div class="jp-OutputArea-child">
+<div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
+<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
+<pre>amount of plots established: 280
+breakdown of how many plots have been revisited --  Revisited since establishment (0=no; 1=yes)
+1    171
+0    109
+Name: count, dtype: int64
+how many plots have not been visited since 2009? -- Not Fully Resurveyed since 2006/07 (excluding 08 &amp; 09 survevys) 1=yes, 0=resurveyed recently
+0    155
+1    125
+Name: count, dtype: int64
+how many are redwood?  ---   Forest Type (1= ME or 2= SESE)
+2    114
+Name: count, dtype: int64
+how many have been revisited?
+  Forest Type (1= ME or 2= SESE) Revisited since establishment (0=no; 1=yes)  \
+0                              2                                           1   
+1                              2                                           0   
+
+   count  
+0     84  
+1     30  
+how many of been visited since 2008? --   Forest Type (1= ME or 2= SESE)  \
+0                              2   
+1                              2   
+
+  Not Fully Resurveyed since 2006/07 (excluding 08 &amp; 09 survevys) 1=yes, 0=resurveyed recently  \
+0                                                                                            0   
+1                                                                                            1   
+
+   count  
+0     77  
+1     37  
+</pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=97906b3b-43cc-4ea8-ad66-0ef99cf80eb4">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
+<h4 id="Disturbance-grouping-and-distributions">Disturbance grouping and distributions<a class="anchor-link" href="#Disturbance-grouping-and-distributions">¶</a></h4>
 </div>
 </div>
 </div>
@@ -7670,15 +7778,10 @@ a.anchor-link {
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [4]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In [56]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
-<div class="highlight hl-ipython3"><pre><span></span><span class="c1">#load plot level data, clean</span>
-<span class="n">df_plot</span> <span class="o">=</span> <span class="n">bs_data</span><span class="p">[</span><span class="s1">'plot_data'</span><span class="p">]</span>
-<span class="n">df_plot</span><span class="o">.</span><span class="n">columns</span> <span class="o">=</span> <span class="n">df_plot</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
-<span class="n">df_plot</span> <span class="o">=</span> <span class="n">df_plot</span><span class="o">.</span><span class="n">drop</span><span class="p">(</span><span class="n">df_plot</span><span class="o">.</span><span class="n">index</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span><span class="o">.</span><span class="n">reset_index</span><span class="p">()</span>
-<span class="n">df_plot</span><span class="o">.</span><span class="n">columns</span> <span class="o">=</span> <span class="n">df_plot</span><span class="o">.</span><span class="n">columns</span><span class="o">.</span><span class="n">str</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span>
-<span class="c1"># isolate data for if burned and p.ram detection year</span>
+<div class="highlight hl-ipython3"><pre><span></span><span class="c1"># isolate data for if burned and p.ram detection year</span>
 <span class="n">df_burnPlot</span> <span class="o">=</span> <span class="n">df_plot</span><span class="o">.</span><span class="n">filter</span><span class="p">(</span><span class="n">regex</span><span class="o">=</span><span class="s2">"Big Sur|burned|1st P.ram"</span><span class="p">)</span><span class="o">.</span><span class="n">iloc</span><span class="p">[:,</span><span class="mi">0</span><span class="p">:</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
 <span class="c1"># create column with binary 0-1 for if p.ram is present given value in p. ram detection year</span>
 <span class="n">df_burnPlot</span><span class="p">[</span><span class="s1">'p.ram'</span><span class="p">]</span> <span class="o">=</span> <span class="p">((</span><span class="n">pd</span><span class="o">.</span><span class="n">to_numeric</span><span class="p">(</span><span class="n">df_burnPlot</span><span class="p">[</span><span class="s1">'1st P.ram Dection'</span><span class="p">],</span> <span class="n">errors</span><span class="o">=</span><span class="s1">'coerce'</span><span class="p">)</span><span class="o">.</span><span class="n">fillna</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span> <span class="o">!=</span> <span class="mi">0</span><span class="p">)</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="nb">int</span><span class="p">))</span>
@@ -7749,7 +7852,7 @@ a.anchor-link {
 </div>
 <div class="jp-OutputArea jp-Cell-outputArea">
 <div class="jp-OutputArea-child jp-OutputArea-executeResult">
-<div class="jp-OutputPrompt jp-OutputArea-prompt">Out[4]:</div>
+<div class="jp-OutputPrompt jp-OutputArea-prompt">Out[56]:</div>
 <div class="jp-RenderedText jp-OutputArea-output jp-OutputArea-executeResult" data-mime-type="text/plain" tabindex="0">
 <pre>Text(0.5, 1.0, 'c) Fire vs. No-Fire')</pre>
 </div>
